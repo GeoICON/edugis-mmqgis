@@ -1,0 +1,1 @@
+cmd /C pyuic4 -o mmqgis_buffers_form.py mmqgis_buffers_form.ui
