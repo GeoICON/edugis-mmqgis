@@ -426,6 +426,9 @@ class mmqgis_buffers_dialog(QDialog, Ui_mmqgis_buffers_form):
 		if radius == "(fixed)":
 			try:
 				mmqgis_buffers_radius = float(self.radius.displayText())
+				# HotFix: Added by Serge N. Markin (serge@geoicon.com)
+				radius = mmqgis_buffers_radius
+				# ---								
 			except:
 				QMessageBox.critical(self.iface.mainWindow(), "Create Buffers", 
 					"Invalid radius number format: " + unicode(self.radius.displayText()))
@@ -433,8 +436,13 @@ class mmqgis_buffers_dialog(QDialog, Ui_mmqgis_buffers_form):
 
 		savename = unicode(self.filename.displayText()).strip()
 
-		message = mmqgis_buffers(self.iface, layername, mmqgis_buffers_radius, unit, 
-			shape, savename, selectedonly, True)
+		# HotFix: Added by Serge N. Markin (serge@geoicon.com)
+		#message = mmqgis_buffers(self.iface, layername, mmqgis_buffers_radius, unit, 
+		#	shape, savename, selectedonly, True)
+		message = mmqgis_buffers(self.iface, layername, radius, unit, shape,
+			savename, selectedonly, True)
+		# ----
+
 		if message <> None:
 			QMessageBox.critical(self.iface.mainWindow(), "Create Buffers", message)
 
